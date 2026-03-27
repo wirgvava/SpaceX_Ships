@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A53A2BD12F76D54500D98101 /* ShipsCore in Frameworks */ = {isa = PBXBuildFile; productRef = A53A2BD02F76D54500D98101 /* ShipsCore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		A5121C262F76CDA400113BE3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -37,6 +41,13 @@
 			);
 			target = A5121C0E2F76CDA300113BE3 /* Ships */;
 		};
+		A53A2BCE2F76D53D00D98101 /* Exceptions for "Libraries" folder in "Ships" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ShipsCore,
+			);
+			target = A5121C0E2F76CDA300113BE3 /* Ships */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -58,6 +69,14 @@
 			path = ShipsUITests;
 			sourceTree = "<group>";
 		};
+		A53A2BCC2F76D51800D98101 /* Libraries */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A53A2BCE2F76D53D00D98101 /* Exceptions for "Libraries" folder in "Ships" target */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A53A2BD12F76D54500D98101 /* ShipsCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,9 +108,11 @@
 		A5121C062F76CDA300113BE3 = {
 			isa = PBXGroup;
 			children = (
+				A53A2BCC2F76D51800D98101 /* Libraries */,
 				A5121C112F76CDA300113BE3 /* Ships */,
 				A5121C282F76CDA400113BE3 /* ShipsTests */,
 				A5121C322F76CDA400113BE3 /* ShipsUITests */,
+				A53A2BCF2F76D54500D98101 /* Frameworks */,
 				A5121C102F76CDA300113BE3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -103,6 +125,13 @@
 				A5121C2F2F76CDA400113BE3 /* ShipsUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A53A2BCF2F76D54500D98101 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,9 +151,11 @@
 			);
 			fileSystemSynchronizedGroups = (
 				A5121C112F76CDA300113BE3 /* Ships */,
+				A53A2BCC2F76D51800D98101 /* Libraries */,
 			);
 			name = Ships;
 			packageProductDependencies = (
+				A53A2BD02F76D54500D98101 /* ShipsCore */,
 			);
 			productName = Ships;
 			productReference = A5121C0F2F76CDA300113BE3 /* Ships.app */;
@@ -585,6 +616,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A53A2BD02F76D54500D98101 /* ShipsCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ShipsCore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A5121C072F76CDA300113BE3 /* Project object */;
 }
