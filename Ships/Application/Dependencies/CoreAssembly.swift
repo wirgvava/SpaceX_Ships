@@ -7,10 +7,19 @@
 
 import Foundation
 import ShipsCore
+import ShipsNetworking
 
 final class CoreAssembly: Assembly {
     
     func assemble(container: DependencyContainer) {
-        print("Here goes the core assembies")
+        // Base Network Service
+        container.register(NetworkServiceProtocol.self) { _ in
+            NetworkService()
+        }
+        
+        // Ships Network Service
+        container.register(ShipsNetworkServiceProtocol.self) { resolver in
+            ShipsNetworkService(networkService: resolver.resolve(NetworkServiceProtocol.self))
+        }
     }
 }

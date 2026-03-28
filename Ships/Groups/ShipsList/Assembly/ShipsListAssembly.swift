@@ -10,8 +10,8 @@ import ShipsCore
 
 final class ShipsListAssembly: Assembly {
     func assemble(container: ShipsCore.DependencyContainer) {
-        container.register(ShipsListViewModel.self) { _ in
-            ShipsListViewModel()
+        container.register(ShipsListViewModel.self) { resolver in
+            ShipsListViewModel(networkService: resolver.resolve(ShipsNetworkServiceProtocol.self))
         }
     }
     

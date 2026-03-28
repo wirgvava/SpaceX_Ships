@@ -17,5 +17,8 @@ struct ShipsListView: View {
     
     var body: some View {
         Color.red.ignoresSafeArea()
+            .task {
+                await viewModel.fetchShips(offset: 0)
+            }
     }
 }

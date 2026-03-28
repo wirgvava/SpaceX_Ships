@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A53A2BD12F76D54500D98101 /* ShipsCore in Frameworks */ = {isa = PBXBuildFile; productRef = A53A2BD02F76D54500D98101 /* ShipsCore */; };
+		A58199782F77EBBD001DBE18 /* ShipsNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = A58199772F77EBBD001DBE18 /* ShipsNetworking */; };
+		A58199842F77FBC7001DBE18 /* ShipsModels in Frameworks */ = {isa = PBXBuildFile; productRef = A58199832F77FBC7001DBE18 /* ShipsModels */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				ShipsCore,
+				ShipsModels,
+				ShipsNetworking,
 			);
 			target = A5121C0E2F76CDA300113BE3 /* Ships */;
 		};
@@ -84,6 +88,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A58199842F77FBC7001DBE18 /* ShipsModels in Frameworks */,
+				A58199782F77EBBD001DBE18 /* ShipsNetworking in Frameworks */,
 				A53A2BD12F76D54500D98101 /* ShipsCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,6 +162,8 @@
 			name = Ships;
 			packageProductDependencies = (
 				A53A2BD02F76D54500D98101 /* ShipsCore */,
+				A58199772F77EBBD001DBE18 /* ShipsNetworking */,
+				A58199832F77FBC7001DBE18 /* ShipsModels */,
 			);
 			productName = Ships;
 			productReference = A5121C0F2F76CDA300113BE3 /* Ships.app */;
@@ -619,6 +627,14 @@
 		A53A2BD02F76D54500D98101 /* ShipsCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ShipsCore;
+		};
+		A58199772F77EBBD001DBE18 /* ShipsNetworking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ShipsNetworking;
+		};
+		A58199832F77FBC7001DBE18 /* ShipsModels */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ShipsModels;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
