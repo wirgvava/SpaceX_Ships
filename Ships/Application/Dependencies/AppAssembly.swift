@@ -19,8 +19,8 @@ final class AppAssembly {
     // MARK: - Setup
     func configure() {
         resolver.apply([
-            CoreAssembly()
-            //
+            CoreAssembly(),
+            ShipsListAssembly()
         ])
     }
 }
