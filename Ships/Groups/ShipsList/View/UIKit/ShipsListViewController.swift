@@ -37,11 +37,27 @@ final class ShipsListViewController: UIViewController {
         return refreshControl
     }()
     
+    private lazy var loadingContainerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = true
+        return view
+    }()
+    
     private lazy var loadingIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
         indicator.translatesAutoresizingMaskIntoConstraints = false
         indicator.hidesWhenStopped = true
         return indicator
+    }()
+    
+    private lazy var loadingLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Loading ships..."
+        label.textColor = .secondaryLabel
+        label.font = .systemFont(ofSize: Constants.loadingLabelFontSize)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     private lazy var emptyStateLabel: UILabel = {
@@ -86,7 +102,7 @@ final class ShipsListViewController: UIViewController {
             .sink { [weak self] ships in
                 guard let self else { return }
                 updateSnapshot(with: ships)
-                emptyStateLabel.isHidden = !ships.isEmpty
+                emptyStateLabel.isHidden = ships.isEmpty == false || viewModel.isLoading
             }
             .store(in: &cancellables)
         
@@ -95,8 +111,11 @@ final class ShipsListViewController: UIViewController {
             .sink { [weak self] isLoading in
                 guard let self else { return }
                 if isLoading && !(refreshControl.isRefreshing) {
+                    loadingContainerView.isHidden = false
                     loadingIndicator.startAnimating()
+                    emptyStateLabel.isHidden = true
                 } else {
+                    loadingContainerView.isHidden = true
                     loadingIndicator.stopAnimating()
                     refreshControl.endRefreshing()
                 }
@@ -130,8 +149,11 @@ final class ShipsListViewController: UIViewController {
         
         view.addSubview(searchBar)
         view.addSubview(tableView)
-        view.addSubview(loadingIndicator)
+        view.addSubview(loadingContainerView)
         view.addSubview(emptyStateLabel)
+        
+        loadingContainerView.addSubview(loadingIndicator)
+        loadingContainerView.addSubview(loadingLabel)
         
         tableView.refreshControl = refreshControl
         
@@ -146,8 +168,15 @@ final class ShipsListViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loadingContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+            loadingIndicator.topAnchor.constraint(equalTo: loadingContainerView.topAnchor),
+            loadingIndicator.centerXAnchor.constraint(equalTo: loadingContainerView.centerXAnchor),
+            
+            loadingLabel.topAnchor.constraint(equalTo: loadingIndicator.bottomAnchor, constant: Constants.loadingLabelTopPadding),
+            loadingLabel.centerXAnchor.constraint(equalTo: loadingContainerView.centerXAnchor),
+            loadingLabel.bottomAnchor.constraint(equalTo: loadingContainerView.bottomAnchor),
             
             emptyStateLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             emptyStateLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
@@ -211,6 +240,8 @@ private extension ShipsListViewController {
     enum Constants {
         static let rowHeight: CGFloat = 150
         static let emptyStateLabelFontSize: CGFloat = 17
+        static let loadingLabelFontSize: CGFloat = 17
+        static let loadingLabelTopPadding: CGFloat = 8
         static let searchBarHeight: CGFloat = 50
         static let searchBarHorizontalPadding: CGFloat = 10
         static let tableViewTopPadding: CGFloat = 10

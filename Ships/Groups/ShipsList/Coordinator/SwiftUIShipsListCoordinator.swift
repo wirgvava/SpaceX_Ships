@@ -14,6 +14,7 @@ final class SwiftUIShipsListCoordinator: Coordinator {
     
     init(naviationController: UINavigationController = UINavigationController()) {
         self.naviationController = naviationController
+        self.naviationController.navigationBar.isHidden = true
     }
     
     func start() {

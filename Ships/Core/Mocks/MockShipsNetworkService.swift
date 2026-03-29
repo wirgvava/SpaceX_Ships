@@ -25,6 +25,23 @@ final class MockShipsNetworkService: ShipsNetworkServiceProtocol {
                     Mission(name: "COTS 2", flight: 8)
                 ],
                 url: "https://www.marinetraffic.com/en/ais/details/ships/shipid:434663/vessel:AMERICAN%20CHAMPION"
+            ),
+            Ship(
+                id: "GOMSCHIEF",
+                name: "GO Ms Chief",
+                type: "High Speed Craft",
+                isActive: true,
+                image: "https://imgur.com/NHsx95l.jpg",
+                homePort: "Port Canaveral",
+                yearBuilt: 2014,
+                weightLbs: 992000,
+                weightKg: 449964,
+                missions: [
+                    Mission(name: "JCSat 18 / Kacific 1", flight: 86),
+                    Mission(name: "Starlink 3", flight: 89),
+                    Mission(name: "Starlink 4", flight: 90)
+                ],
+                url: "https://www.marinetraffic.com/en/ais/details/ships/shipid:5126789/mmsi:338035000/vessel:GO%20MS.CHIEF"
             )
         ]
     }

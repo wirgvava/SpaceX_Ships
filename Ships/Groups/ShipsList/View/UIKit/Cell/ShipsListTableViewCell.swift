@@ -61,6 +61,8 @@ final class ShipsListTableViewCell: UITableViewCell {
     
     private let favoriteButton: UIButton = {
         let button = UIButton(type: .system)
+        let config = UIImage.SymbolConfiguration(pointSize: Constants.favoriteButtonSize, weight: .regular)
+        button.setPreferredSymbolConfiguration(config, forImageIn: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -183,6 +185,7 @@ private extension ShipsListTableViewCell {
         static let nameFontSize: CGFloat = 18
         static let typeFontSize: CGFloat = 16
         static let statusFontSize: CGFloat = 14
+        static let favoriteButtonSize: CGFloat = 22
         static let stackViewSpacing: CGFloat = 4
         static let cellPadding: CGFloat = 10
         static let contentPadding: CGFloat = 16
