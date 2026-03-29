@@ -62,6 +62,16 @@ public struct Ship: Decodable, Sendable, Hashable, Identifiable, Equatable {
         self.missions = try container.decodeIfPresent([Mission].self, forKey: .missions) ?? []
         self.url = try container.decodeIfPresent(String.self, forKey: .url) ?? ""
     }
+    
+    public var displayYear: String {
+        return String(yearBuilt)
+    }
+    
+    public var displayWeightKg: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return "\(formatter.string(from: NSNumber(value: weightKg)) ?? String(weightKg)) kg"
+    }
 }
 
 extension Ship {

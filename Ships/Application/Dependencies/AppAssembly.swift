@@ -20,7 +20,8 @@ final class AppAssembly {
     func configure() {
         resolver.apply([
             CoreAssembly(),
-            ShipsListAssembly()
+            ShipsListAssembly(),
+            ShipDetailsAssembly()
         ])
     }
 }

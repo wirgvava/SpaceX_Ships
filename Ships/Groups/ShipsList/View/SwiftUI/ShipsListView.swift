@@ -61,6 +61,9 @@ struct ShipsListView: View {
                         viewModel.toggleFavorite(for: item.ship)
                     }
                 )
+                .onTapGesture {
+                    viewModel.selectShip(item)
+                }
                 .onAppear {
                     if item == viewModel.filteredShips.last {
                         Task {

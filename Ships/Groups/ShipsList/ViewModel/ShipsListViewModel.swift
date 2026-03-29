@@ -17,6 +17,9 @@ final class ShipsListViewModel: ObservableObject {
     @Published private(set) var errorMessage: String?
     @Published var searchText: String = .empty
     
+    // MARK: - Navigation (for UIKit)
+    let navigationPublisher = PassthroughSubject<ShipsListDestination, Never>()
+    
     // MARK: - Dependencies
     private let networkService: ShipsNetworkServiceProtocol
     
@@ -76,8 +79,8 @@ final class ShipsListViewModel: ObservableObject {
         errorMessage = nil
     }
     
-    func selectShip(_ ship: Ship) {
-        // TODO: - 
+    func selectShip(_ ship: ShipDisplayItem) {
+        navigationPublisher.send(.shipDetails(ship))
     }
     
     private func updateDisplayItems() {

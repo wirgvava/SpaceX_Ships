@@ -15,6 +15,9 @@ final class MainCoordinator: Coordinator {
     private let window: UIWindow
     private var tabBarController: MainTabBarController?
     
+    private var uiKitListCoordinator: UIKitShipsListCoordinator?
+    private var swiftUIListCoordinator: SwiftUIShipsListCoordinator?
+    
     // MARK: - Init
     init(window: UIWindow) {
         self.window = window
@@ -25,6 +28,9 @@ final class MainCoordinator: Coordinator {
     func start() {
         let uiKitCoordinator = UIKitShipsListCoordinator()
         let swiftUICoordinator = SwiftUIShipsListCoordinator()
+        
+        self.uiKitListCoordinator = uiKitCoordinator
+        self.swiftUIListCoordinator = swiftUICoordinator
         
         uiKitCoordinator.start()
         swiftUICoordinator.start()

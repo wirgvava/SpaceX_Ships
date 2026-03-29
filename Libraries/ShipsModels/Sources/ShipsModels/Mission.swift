@@ -7,7 +7,9 @@
 
 import Foundation
 
-public struct Mission: Decodable, Sendable, Hashable {
+public struct Mission: Decodable, Sendable, Hashable, Identifiable {
+    public let id = UUID()
+    
     public let name: String
     public let flight: Int
     

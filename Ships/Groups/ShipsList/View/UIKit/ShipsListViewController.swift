@@ -145,7 +145,6 @@ final class ShipsListViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .white
-        navigationController?.navigationBar.isHidden = true
         
         view.addSubview(searchBar)
         view.addSubview(tableView)
@@ -219,7 +218,8 @@ extension ShipsListViewController {
 // MARK: - UITableViewDelegate
 extension ShipsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: - 
+        guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
+        viewModel.selectShip(item)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
