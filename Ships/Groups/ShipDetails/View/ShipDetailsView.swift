@@ -46,8 +46,8 @@ struct ShipDetailsView: View {
     
     private var toolBarButton: some View {
         Button(action: { viewModel.toggleFavorite() }) {
-            Image(systemName: viewModel.item.isFavorite ? "heart.fill" : "heart")
-                .foregroundColor(viewModel.item.isFavorite ? .red : .gray)
+            Image(systemName: viewModel.isFavorite ? "heart.fill" : "heart")
+                .foregroundColor(viewModel.isFavorite ? .red : .gray)
         }
     }
     

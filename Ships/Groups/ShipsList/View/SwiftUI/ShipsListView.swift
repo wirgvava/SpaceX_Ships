@@ -55,15 +55,17 @@ struct ShipsListView: View {
     private var shipsList: some View {
         List {
             ForEach(viewModel.filteredShips) { item in
-                ShipRowView(
-                    item: item,
-                    onFavoriteToggle: {
-                        viewModel.toggleFavorite(for: item.ship)
-                    }
-                )
-                .onTapGesture {
+                Button {
                     viewModel.selectShip(item)
+                } label: {
+                    ShipRowView(
+                        item: item,
+                        onFavoriteToggle: {
+                            viewModel.toggleFavorite(for: item.ship.id)
+                        }
+                    )
                 }
+                .buttonStyle(.plain)
                 .onAppear {
                     if item == viewModel.filteredShips.last {
                         Task {
@@ -96,5 +98,8 @@ private extension ShipsListView {
 }
 
 #Preview {
-    ShipsListView(viewModel: .init(networkService: MockShipsNetworkService()))
+    ShipsListView(viewModel: .init(
+        networkService: MockShipsNetworkService(),
+        favoritesStorage: FavoritesStorage())
+    )
 }

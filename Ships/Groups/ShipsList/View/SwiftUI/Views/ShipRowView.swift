@@ -46,6 +46,7 @@ extension ShipsListView {
                         .foregroundColor(item.isFavorite ? .red : .white)
                         .padding(Constants.contentPadding)
                 }
+                .buttonStyle(.borderless)
                 
                 // Info Overlay
                 VStack {

@@ -11,7 +11,10 @@ import ShipsModels
 final class ShipDetailsAssembly: Assembly {
     func assemble(container: ShipsCore.DependencyContainer) {
         container.register(ShipDetailsViewModel.self) { resolver, item in
-            ShipDetailsViewModel(item: item)
+            ShipDetailsViewModel(
+                item: item,
+                favoritesStorage: resolver.resolve(FavoritesStorageProtocol.self)
+            )
         }
     }
     

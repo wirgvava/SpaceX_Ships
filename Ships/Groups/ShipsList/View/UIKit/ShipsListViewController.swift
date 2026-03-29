@@ -200,7 +200,7 @@ extension ShipsListViewController {
             
             cell.configure(with: item)
             cell.onFavoriteToggle = { [weak self] in
-                self?.viewModel.toggleFavorite(for: item.ship)
+                self?.viewModel.toggleFavorite(for: item.ship.id)
             }
             
             return cell
@@ -211,7 +211,7 @@ extension ShipsListViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Int, ShipDisplayItem>()
         snapshot.appendSections([.zero])
         snapshot.appendItems(items)
-        dataSource.apply(snapshot, animatingDifferences: true)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
 }
 
@@ -253,7 +253,10 @@ private extension ShipsListViewController {
 
 //fileprivate struct ShipsListViewControllerRepresentable: UIViewControllerRepresentable {
 //    func makeUIViewController(context: Context) -> some UIViewController {
-//        return ShipsListViewController(viewModel: .init(networkService: MockShipsNetworkService()))
+//        return ShipsListViewController(viewModel: .init(
+//            networkService: MockShipsNetworkService(),
+//            favoritesStorage: FavoritesStorage())
+//        )
 //    }
 //    
 //    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) { }

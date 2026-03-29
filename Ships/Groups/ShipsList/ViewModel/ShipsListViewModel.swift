@@ -17,11 +17,12 @@ final class ShipsListViewModel: ObservableObject {
     @Published private(set) var errorMessage: String?
     @Published var searchText: String = .empty
     
-    // MARK: - Navigation (for UIKit)
+    // MARK: - Navigation
     let navigationPublisher = PassthroughSubject<ShipsListDestination, Never>()
     
     // MARK: - Dependencies
     private let networkService: ShipsNetworkServiceProtocol
+    private let favoritesStorage: FavoritesStorageProtocol
     
     // MARK: - Properties
     private var allShips: [Ship] = []
@@ -31,8 +32,9 @@ final class ShipsListViewModel: ObservableObject {
     private let pageSize: Int = 10
     
     // MARK: - Init
-    init(networkService: ShipsNetworkServiceProtocol) {
+    init(networkService: ShipsNetworkServiceProtocol, favoritesStorage: FavoritesStorageProtocol) {
         self.networkService = networkService
+        self.favoritesStorage = favoritesStorage
         self.setupBindings()
     }
     
@@ -43,6 +45,13 @@ final class ShipsListViewModel: ObservableObject {
             .removeDuplicates()
             .sink { [weak self] _ in
                 self?.filterShips()
+            }
+            .store(in: &cancellables)
+        
+        favoritesStorage.favoritesPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.updateDisplayItems()
             }
             .store(in: &cancellables)
     }
@@ -71,8 +80,8 @@ final class ShipsListViewModel: ObservableObject {
         await fetchShips(offset: currentOffset + pageSize)
     }
     
-    func toggleFavorite(for ship: Ship) {
-        // TODO: -
+    func toggleFavorite(for shipId: String) {
+        favoritesStorage.toggleFavorite(shipId: shipId)
     }
     
     func clearError() {
@@ -84,8 +93,9 @@ final class ShipsListViewModel: ObservableObject {
     }
     
     private func updateDisplayItems() {
+        let favorites = favoritesStorage.favorites
         ships = allShips.map { ship in
-            ShipDisplayItem(ship: ship, isFavorite: false) // TODO: - do something with isFavorite later.
+            ShipDisplayItem(ship: ship, isFavorite: favorites.contains(ship.id))
         }
         filterShips()
     }
