@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Ship: Decodable {
+public struct Ship: Decodable, Sendable, Hashable, Identifiable, Equatable {
     public let id: String
     public let name: String
     public let type: String
@@ -69,5 +69,18 @@ extension Ship {
         CodingKeys.allCases
             .map(\.rawValue)
             .joined(separator: ",")
+    }
+}
+
+// MARK: - Ship Display Item
+public struct ShipDisplayItem: Sendable, Hashable, Identifiable {
+    public let ship: Ship
+    public let isFavorite: Bool
+    
+    public var id: String { ship.id }
+    
+    public init(ship: Ship, isFavorite: Bool) {
+        self.ship = ship
+        self.isFavorite = isFavorite
     }
 }

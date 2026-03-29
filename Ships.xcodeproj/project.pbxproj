@@ -10,6 +10,7 @@
 		A53A2BD12F76D54500D98101 /* ShipsCore in Frameworks */ = {isa = PBXBuildFile; productRef = A53A2BD02F76D54500D98101 /* ShipsCore */; };
 		A58199782F77EBBD001DBE18 /* ShipsNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = A58199772F77EBBD001DBE18 /* ShipsNetworking */; };
 		A58199842F77FBC7001DBE18 /* ShipsModels in Frameworks */ = {isa = PBXBuildFile; productRef = A58199832F77FBC7001DBE18 /* ShipsModels */; };
+		A5838D542F7878E200C6A1C4 /* ShipsUI in Frameworks */ = {isa = PBXBuildFile; productRef = A5838D532F7878E200C6A1C4 /* ShipsUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 				ShipsCore,
 				ShipsModels,
 				ShipsNetworking,
+				ShipsUI,
 			);
 			target = A5121C0E2F76CDA300113BE3 /* Ships */;
 		};
@@ -88,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5838D542F7878E200C6A1C4 /* ShipsUI in Frameworks */,
 				A58199842F77FBC7001DBE18 /* ShipsModels in Frameworks */,
 				A58199782F77EBBD001DBE18 /* ShipsNetworking in Frameworks */,
 				A53A2BD12F76D54500D98101 /* ShipsCore in Frameworks */,
@@ -164,6 +167,7 @@
 				A53A2BD02F76D54500D98101 /* ShipsCore */,
 				A58199772F77EBBD001DBE18 /* ShipsNetworking */,
 				A58199832F77FBC7001DBE18 /* ShipsModels */,
+				A5838D532F7878E200C6A1C4 /* ShipsUI */,
 			);
 			productName = Ships;
 			productReference = A5121C0F2F76CDA300113BE3 /* Ships.app */;
@@ -635,6 +639,10 @@
 		A58199832F77FBC7001DBE18 /* ShipsModels */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ShipsModels;
+		};
+		A5838D532F7878E200C6A1C4 /* ShipsUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ShipsUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

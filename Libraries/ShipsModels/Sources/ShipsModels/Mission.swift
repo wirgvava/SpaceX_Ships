@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Mission: Decodable {
+public struct Mission: Decodable, Sendable, Hashable {
     public let name: String
     public let flight: Int
     

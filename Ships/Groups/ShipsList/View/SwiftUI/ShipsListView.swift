@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ShipsModels
 
 struct ShipsListView: View {
     
@@ -18,7 +19,11 @@ struct ShipsListView: View {
     var body: some View {
         Color.red.ignoresSafeArea()
             .task {
-                await viewModel.fetchShips(offset: 0)
+                await viewModel.fetchShips(offset: .zero)
             }
     }
+}
+
+#Preview {
+    ShipsListView(viewModel: .init(networkService: MockShipsNetworkService()))
 }
