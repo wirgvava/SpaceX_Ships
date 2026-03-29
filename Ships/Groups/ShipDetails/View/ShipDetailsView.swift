@@ -33,10 +33,11 @@ struct ShipDetailsView: View {
                 ExternalLinkSection {
                     viewModel.openLink()
                 }
+                .padding(.bottom)
             }
             .padding(.horizontal)
         }
-        .ignoresSafeArea()
+        .ignoresSafeArea(edges: .top)
         .toolbar(content: {
             ToolbarItem(placement: .navigationBarTrailing) {
                 toolBarButton

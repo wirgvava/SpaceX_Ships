@@ -22,6 +22,7 @@ struct ShipsListView: View {
         VStack(spacing: .zero) {
             SearchBar(searchText: $viewModel.searchText)
                 .frame(height: Constants.searchBarHeight)
+                .padding(.horizontal, Constants.horizontalPadding)
             
             ZStack {
                 if viewModel.isLoading && viewModel.filteredShips.isEmpty {
@@ -33,7 +34,6 @@ struct ShipsListView: View {
                 }
             }
         }
-        .padding(.horizontal, Constants.horizontalPadding)
         .refreshable {
             await viewModel.fetchShips(offset: .zero)
         }
@@ -66,6 +66,7 @@ struct ShipsListView: View {
                     )
                 }
                 .buttonStyle(.plain)
+                .padding(.horizontal, Constants.horizontalPadding)
                 .onAppear {
                     if item == viewModel.filteredShips.last {
                         Task {
